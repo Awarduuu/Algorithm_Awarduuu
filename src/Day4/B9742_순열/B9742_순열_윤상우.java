@@ -17,8 +17,7 @@ public class B9742_순열_윤상우 {
 	
 	public static void permutation(int r, int n) {
 		if(r==R) {
-			cnt++;
-			if(cnt==n) {
+			if(++cnt==n) {
 				System.out.print(ans);
 				for(int i=0; i<R; i++) {
 					System.out.print(s.charAt(selection[i]));
@@ -40,11 +39,13 @@ public class B9742_순열_윤상우 {
 
 	public static void main(String[] args) throws IOException {
 		BufferedReader bf = new BufferedReader(new InputStreamReader(System.in));
-		String input;
+		
 		StringTokenizer st;
 		
-		while((input = bf.readLine()) != null  && input.length() != 0) {
-			st = new StringTokenizer(input);
+		while(true) {
+			String input = bf.readLine();
+			if(input == null) break;
+			st = new StringTokenizer(input, " ");
 			s = st.nextToken();
 			n = Integer.parseInt(st.nextToken());
 			R = s.length();
@@ -58,9 +59,6 @@ public class B9742_순열_윤상우 {
 				System.out.println(ans + "No permutation");
 			}
 		}
-		
-		
 	}
-
 }
 
