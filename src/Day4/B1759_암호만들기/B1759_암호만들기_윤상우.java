@@ -19,7 +19,6 @@ public class B1759_암호만들기_윤상우 {
 	public static void password(int num, int start) {
 		if(num == l) {
 			cnt++;
-//			String ans = "";
 			int flag1 = 0;
 			int flag2 = 0;
 			for(int i=0; i<l; i++) {
