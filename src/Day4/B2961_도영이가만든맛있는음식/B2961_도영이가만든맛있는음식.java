@@ -11,7 +11,7 @@ public class B2961_도영이가만든맛있는음식 {
 	static int [] a;
 	static int [] b;
 	static long dif;
-	static long best;
+	static long best = Integer.MAX_VALUE;
 	static boolean [] isSelected;
 	
 	public static void cook(int r) {
@@ -56,10 +56,8 @@ public class B2961_도영이가만든맛있는음식 {
 		}
 		
 		isSelected = new boolean [N];
-		best = 1_000_000_000;
 		cook(0);
 		
 		System.out.println(best);
 	}
-
 }

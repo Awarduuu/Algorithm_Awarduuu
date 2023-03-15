@@ -46,7 +46,6 @@ public class Recursive {
 		// 2. 재귀 확장
 		R = 2;
 		permutation(0);
-		
 	}
 
 }
