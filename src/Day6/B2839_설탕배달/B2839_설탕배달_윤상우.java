@@ -9,25 +9,41 @@ public class B2839_설탕배달_윤상우 {
 		int n = sc.nextInt();
 		
 		int i = n/5;
-		int j = 0;
-		int res = 0;
+//		int j = 0;
+//		int res = 0;
 		
-		while((n - 5*i) % 3 != 0) {
-			i--;
-			if(i < 0) break;
+		// 1번 풀이
+//		while((n - 5*i) % 3 != 0) {
+//			i--;
+//			if(i < 0) break;
+//		}
+//		
+//		if(i<0) {
+//			res = -1;
+//		}
+//		else {
+//			j = (n - 5*i) / 3;
+//			res = i + j;
+//		}
+//		
+//		sc.close();
+//		System.out.println(res);
+		
+		// 2번 풀이
+		while(i >= 0) {
+			int j = (n - 5*i) / 3;
+			int temp = 5*i + 3*j;
+			if(temp == n) {
+				int res = i+j;
+				System.out.println(res);
+				return;
+			} else {
+				i -= 1;
+			}
 		}
 		
-		j = (n - 5*i) / 3;
-		
-		if(i<0) {
-			res = -1;
-		}else {
-			res = i + j;
-		}
-		
-		
-		System.out.println(res);
-		
+		sc.close();
+		System.out.println(-1);
 	}
 
 }
