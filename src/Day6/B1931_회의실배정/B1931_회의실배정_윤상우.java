@@ -6,7 +6,7 @@ import java.io.InputStreamReader;
 import java.util.Arrays;
 import java.util.StringTokenizer;
 
-public class B1931_회의실배정 {
+public class B1931_회의실배정_윤상우 {
 
 	static int n;
 	static int[][] arr;
