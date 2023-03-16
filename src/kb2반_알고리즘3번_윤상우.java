@@ -11,36 +11,34 @@ public class kb2반_알고리즘3번_윤상우 {
 	
 	// 같은 돌인지 체크
 	static boolean checkPlayer(int player, int x, int y) {
-		if(checkValid(x, y) && arr[x][y] == player) return true;
-		else
-			return false;
+		if(checkValid(x, y) && arr[x][y] == player) {
+			return true;
+		}
+		return false;
 	}
 	
 	// 배열 인덱스가 유효한지 판단하는 함수
 	static boolean checkValid(int x, int y) {
-		if(x<1 || x>20 || y<1 || y>20) return false;
+		if(x<1 || x>=20 || y<1 || y>=20) return false;
 		return true;
 	}
 	
-	static int  checkFinish(int x, int y) {
+	static int checkFinish(int x, int y) {
 		int nowPlayer = arr[x][y];
 		
 		if(nowPlayer == 0) return nowPlayer;
 		
-		int next_x; int next_y;
 		boolean flag;
-		
-		
 		
 		for(int i=0; i<4; i++) {
 			
-			next_x = x;
-			next_y = y;
+			int next_x = x;
+			int next_y = y;
 			flag = true;
 			
 			for(int cnt=0; cnt<4; cnt++) {
-				next_x = x+dx[i];
-				next_y = y+dy[i];
+				next_x = next_x+dx[i];
+				next_y = next_y+dy[i];
 				
 				if(!checkPlayer(nowPlayer, next_x, next_y)) {
 					flag = false;
@@ -90,9 +88,7 @@ public class kb2반_알고리즘3번_윤상우 {
 			}
 		}
 		System.out.println(0);
-		
-		
-		
 	}
+	
 
 }
