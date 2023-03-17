@@ -13,7 +13,6 @@ public class B11724_연결요소의개수 {
 	static int cnt;
 	static ArrayList<Integer> [] arr;
 	static boolean [] isVisited;
-	static boolean flag;
 	
 	static void dfs(int node) {
 		isVisited[node] = true;
