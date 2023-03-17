@@ -22,9 +22,9 @@ public class B1260_DFS와BFS_윤상우 {
 		isVisited[node] = true;
 		System.out.print(node + " ");
 		
-		for(int i : arr[node]) {
-			if(isVisited[i]) continue;
-			dfs(i);
+		for(int nextNode : arr[node]) {
+			if(isVisited[nextNode]) continue;
+			dfs(nextNode);
 		}
 	}
 	
@@ -40,8 +40,8 @@ public class B1260_DFS와BFS_윤상우 {
 			
 			for(int nextNode : arr[nowNode]) {
 				if(isVisited[nextNode]) continue;
-				isVisited[nextNode] = true;
 				que.offer(nextNode);
+				isVisited[nextNode] = true;
 			}
 		}
 		

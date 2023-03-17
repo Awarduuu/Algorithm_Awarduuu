@@ -21,15 +21,15 @@ public class B1991_트리순회_윤상우 {
 	static void inorder(int nowNode) {
 		if(nowNode == -19) return;
 		
-		preorder(tree[nowNode][0]);
+		inorder(tree[nowNode][0]);
 		System.out.print((char)(nowNode + 65));
-		preorder(tree[nowNode][1]);
+		inorder(tree[nowNode][1]);
 	}
 	static void postorder(int nowNode) {
 		if(nowNode == -19) return;
 		
-		preorder(tree[nowNode][0]);
-		preorder(tree[nowNode][1]);
+		postorder(tree[nowNode][0]);
+		postorder(tree[nowNode][1]);
 		System.out.print((char)(nowNode + 65));
 	}
 	
@@ -68,8 +68,8 @@ public class B1991_트리순회_윤상우 {
 		inorder(0);
 		System.out.println();
 		postorder(0);
-		System.out.println();
-		BFS(0);
+//		System.out.println();
+//		BFS(0);
 		
 		
 	}
