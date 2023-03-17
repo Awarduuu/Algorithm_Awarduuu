@@ -8,7 +8,6 @@ public class B1991_트리순회_윤상우 {
 
 	static int n;
 	static int tree [][];
-	static boolean isVisited [];
 	static int parent [];
 	
 	static void preorder(int nowNode) {
@@ -54,7 +53,6 @@ public class B1991_트리순회_윤상우 {
 		
 		n = sc.nextInt();
 		tree = new int [n][2];
-		isVisited = new boolean[n];
 		parent = new int [n];
 		
 		for(int i=0; i<n; i++) {
