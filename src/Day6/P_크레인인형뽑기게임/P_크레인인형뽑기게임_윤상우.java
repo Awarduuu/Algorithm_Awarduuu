@@ -19,34 +19,57 @@ public class P_크레인인형뽑기게임_윤상우 {
 	public static int solution(int[][] board, int[] moves) {
         Stack<Integer>  basket = new Stack<>();
         int N = board.length;
-        int doll = 0;
         int answer = 0;
-        int act = moves.length;
         
-        for(int i=0; i<act; i++) {
-        	int num = moves[i]-1;
+        for(int move : moves) {
         	for(int j=0; j<N; j++) {
-        		if(board[j][num] != 0) {
-        			doll = board[j][num];
-        			if(!basket.isEmpty()) {
-                		if(basket.peek() == doll) {
-                			basket.pop();
-                			answer += 2;
-                		} else {
-                			basket.push(doll);
-                		}
-                	}else {
-                		basket.push(doll);
-                	}
-        			board[j][num] = 0;
-        			break;
+        		if(board[j][move-1] != 0) {
+        			
+        			if(basket.isEmpty()) {
+        				basket.push(board[j][move-1]);
+        				board[j][move-1] = 0;
+        				break;
+        			}
+        			
+        			if(basket.peek() == board[j][move-1]) {
+        				basket.pop();
+        				answer += 2;
+        			}else {
+        				basket.push(board[j][move-1]);
+        			}
+        			
+        			board[j][move-1] = 0;
+    				break;
+        			
         		}
-    			
         	}
         }
- 
         return answer;
-    }
+	}
+//        for(int i=0; i<act; i++) {
+//        	int num = moves[i]-1;
+//        	for(int j=0; j<N; j++) {
+//        		if(board[j][num] != 0) {
+//        			doll = board[j][num];
+//        			if(!basket.isEmpty()) {
+//                		if(basket.peek() == doll) {
+//                			basket.pop();
+//                			answer += 2;
+//                		} else {
+//                			basket.push(doll);
+//                		}
+//                	}else {
+//                		basket.push(doll);
+//                	}
+//        			board[j][num] = 0;
+//        			break;
+//        		}
+//    			
+//        	}
+//        }
+// 
+//        return answer;
+//    }
 	public static void main(String[] args) {
 		
 		System.out.println(solution(board, moves));
