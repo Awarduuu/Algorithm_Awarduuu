@@ -13,8 +13,8 @@ public class B9663_NQueen_윤상우 {
 	
 	static boolean checkValid(int x, int y) {
 		for(int i=0; i<n; i++) {
-			if(y == i || arr[i] == -1) continue;						// 자기자신이나 안 고른 경우는 pass
-			if(Math.abs(y - i) == Math.abs(x - arr[i])) return false;	// 대각선 걸리는 경우
+			if(x == i || arr[i] == -1) continue;						// 자기자신이나 안 고른 경우는 pass
+			if(Math.abs(x - i) == Math.abs(y - arr[i])) return false;	// 대각선 걸리는 경우
 		}
 		return true;
 	}
@@ -27,7 +27,7 @@ public class B9663_NQueen_윤상우 {
 		
 		for(int i=0; i<n; i++) {
 			if(isSelected[i]) continue;
-			if(!checkValid(i, r)) continue;
+			if(!checkValid(r, i)) continue;
 			
 			isSelected[i] = true;
 			arr[r] = i;
