@@ -3,6 +3,7 @@ package Day9.B1976_여행가자;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.util.Arrays;
 import java.util.StringTokenizer;
 
 public class B1976_여행가자_윤상우 {
@@ -10,7 +11,7 @@ public class B1976_여행가자_윤상우 {
 	static int n;
 	static int m;
 	static int [] parent;
-	static int [] city;
+	static int [] plan;
 	
 	static int find(int x) {
 		if(x == parent[x]) return x;
@@ -34,11 +35,13 @@ public class B1976_여행가자_윤상우 {
 		m = Integer.parseInt(st.nextToken());
 		
 		parent = new int [n+1];
-		city = new int [m+1];
+		plan = new int [m+1];
+		// 람다식으로 배열에 값 넣기
+		Arrays.setAll(parent, (i) -> (i));
 		
-		for(int i=1; i<n+1; i++) {
-			parent[i]=i;
-		}
+//		for(int i=1; i<n+1; i++) {
+//			parent[i]=i;
+//		}
 		
 		for(int i=1; i<n+1; i++) {
 			st = new StringTokenizer(bf.readLine());
@@ -50,15 +53,16 @@ public class B1976_여행가자_윤상우 {
 		}
 		
 		st = new StringTokenizer(bf.readLine());
+		
 		for(int i=1; i<m+1; i++) {
-			city[i] = Integer.parseInt(st.nextToken());
+			plan[i] = Integer.parseInt(st.nextToken());
 		}
 		
-		int root = find(city[1]);
+		int root = find(plan[1]);
 		boolean flag = true;
 		
 		for(int i=1; i<m+1; i++) {
-			if(root != find(city[i])) {
+			if(root != find(plan[i])) {
 				flag = false;
 				break;
 			}

@@ -9,7 +9,6 @@ public class B1717_집합의표현_윤상우 {
 
 	static int n;
 	static int m;
-	static int [] arr;
 	static int [] parent;
 	
 	static void union(int a, int b) {
@@ -35,11 +34,9 @@ public class B1717_집합의표현_윤상우 {
 		
 		n = Integer.parseInt(st.nextToken());
 		m = Integer.parseInt(st.nextToken());
-		arr = new int [n+1];
 		parent = new int [n+1];
 		
 		for(int i=0; i<n+1; i++) {
-			arr[i] = i;
 			parent[i] = i;
 		}
 		
