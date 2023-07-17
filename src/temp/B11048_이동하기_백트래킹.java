@@ -5,7 +5,7 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.StringTokenizer;
 
-public class B11048_이동하기 {
+public class B11048_이동하기_백트래킹 {
     static int n;
     static int m;
     static int [][] array;

@@ -64,7 +64,10 @@ public class B1941_소문난칠공주 {
 
             }
         }
-        if(num==7) ans++; // 7개 모두 이어진 경우 정답 올리기
+        if(num==7) {
+            System.out.println(num);
+            ans++; // 7개 모두 이어진 경우 정답 올리기
+        }
     }
 
     public static void main(String[] args) throws IOException {

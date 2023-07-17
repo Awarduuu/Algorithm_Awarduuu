@@ -1,91 +1,131 @@
 package temp;
 
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.InputStreamReader;
+
 import java.util.ArrayDeque;
+import java.util.Arrays;
 import java.util.Queue;
-import java.util.StringTokenizer;
 
 public class Main {
 
-    static boolean [] isVisited;
+    static int R;
     static int [] selection;
-    static int answer;
-    static char [][] arr;
-    static int [] d = {-1,1,-5,5};
+    static boolean [][] isVisited;
+    static int [][] array;
+    static int monster;
+    static int [] person;
+    static int [] dx = {-1,1,0,0};
+    static int [] dy = {0,0,-1,1};
+    static int n;
+    static int m;
+    static int range;
+
+//    static void permutation(int r){
+//        if(r==R){
+//            for(int i: selection){
+//                System.out.print(array[i] + " ");
+//            }
+//            System.out.println();
+//            return;
+//        }
+//
+//        for(int i=0; i<array.length; i++){
+//            if(isVisited[i]) continue;
+//            selection[r] = i;
+//            isVisited[i] = true;
+//            permutation(r+1);
+//            isVisited[i] = false;
+//        }
+//    }
+//
+//    static void combination(int s, int r){
+//        if(r==R){
+//            for(int i: selection){
+//                System.out.print(array[i] + " ");
+//            }
+//            System.out.println();
+//            return;
+//        }
+//
+//        for(int i=s; i<array.length; i++){
+//            selection[r] = i;
+//            combination(i+1, r+1);
+//        }
+//    }
+
+    static boolean isValid(int x, int y){
+        if(x<0 || x>=n || y<0 || y>=m) return false;
+        return true;
+    }
+
+    static void dfs(int start[]){
+        for(int i=0; i<4; i++){
+            int next_x = start[0] + dx[i];
+            int next_y = start[1] + dy[i];
+            int next_range = start[2] + 1;
+            if(!isValid(next_x,next_y)) {
+                range = Math.min(range, next_range);
+                continue;
+            }
+            if(isVisited[next_x][next_y]) continue;
+            if(array[next_x][next_y] == 0) continue;
+            isVisited[next_x][next_y] = true;
+            dfs(new int[]{next_x, next_y, next_range});
+            isVisited[next_x][next_y] = false;
+        }
+    }
+    static void bfs(int start[]){
+        Queue<int []> que = new ArrayDeque<>();
+        que.add(start);
+        isVisited[start[0]][start[1]] = true;
+        monster += array[start[0]][start[1]];
+        person[0] = 1;
+
+        while(!que.isEmpty()){
+            int [] now = que.poll();
+            int now_x = now[0];
+            int now_y = now[1];
+            int now_range = now[2];
 
 
 
-    static boolean isNear(int [] array){
-        int n = 0;
-        boolean [] visited = new boolean [25];
-        Queue<Integer> que = new ArrayDeque<>();
-        que.add(array[0]);
-        isVisited[array[0]] = true;
+            for(int i=0; i<4; i++){
+                int next_x = now_x + dx[i];
+                int next_y = now_y + dy[i];
+                int next_range = now_range + 1;
+                if(!isValid(next_x,next_y)) continue;
+                if(isVisited[next_x][next_y]) continue;
+                if(array[next_x][next_y] == 0) continue;
 
-        if(!que.isEmpty()){
-            int now = que.poll();
-
-            for(int i=0; i<4; i++) {
-                int next = now + d[i];
-                if (visited[next]) continue;
-                if (next < 0 || next >= 25) continue;
-                for (int j = 0; j < array.length; j++) {
-                    if (next == array[j]) {
-                        que.add(next);
-                        isVisited[next] = true;
-                        n++;
-                    }
+                que.offer(new int []{next_x,next_y, next_range});
+                isVisited[next_x][next_y] = true;
+                if(next_range < range){
+                    person[next_range] += 1;
+                    monster += array[next_x][next_y];
                 }
             }
         }
-
-        if(n==7) return true;
-        return false;
     }
+    public static void main(String[] args) {
+        array = new int [][]{{1,2,3,4,5},{6,0,0,0,7},{8,2,3,0,9},{10,3,4,5,15},{11,12,13,14,16}};
 
-    static void combination(int n, int r){
-        if(r==7){
-            int s = 0;
+        n = array.length;
+        m = array[0].length;
 
-            if(isNear(selection)){
-                for(int i : selection){
-                    int x = i/5;
-                    int y = i%5;
-                    if(arr[x][y] == 'S') s++;
-                }
-                if(s > 3) answer++;
-            }
+        isVisited = new boolean[n][m];
+        monster = 0;
 
-            return;
-        }
+        range = Integer.MAX_VALUE;
 
-        for(int i=n; i<25; i++){
-            if(isVisited[i]) continue;
-            isVisited[i] = true;
-            selection[n] = i;
-            combination(i+1,r+1);
-            isVisited[i] = false;
-        }
-    }
-    public static void main(String[] args) throws IOException {
-        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+        dfs(new int[]{2,2,0});
 
-        for(int i=0; i<5; i++){
-            StringTokenizer st = new StringTokenizer(br.readLine());
-            String s = st.nextToken();
-            for(int j=0; j<5; j++){
-                arr[i][j] = s.charAt(j);
-            }
-        }
+        person = new int [range];
 
-        isVisited = new boolean [25];
-        selection = new int [7];
-        answer = 0;
+        bfs(new int[]{2,2,0});
 
-        combination(0,0);
+        Arrays.sort(person);
 
-        System.out.println(answer);
+        System.out.println(monster);
+
+        System.out.println(person[range-1]);
     }
 }

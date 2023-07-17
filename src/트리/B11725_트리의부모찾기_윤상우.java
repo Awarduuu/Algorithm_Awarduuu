@@ -10,6 +10,7 @@ public class B11725_트리의부모찾기_윤상우 {
 	static ArrayList<Integer> tree [];
 	static boolean [] isVisited;
 	static int [] parent;
+	static int [] cnt;
 	
 	public static void search(int node) {
 		
@@ -29,6 +30,7 @@ public class B11725_트리의부모찾기_윤상우 {
 		tree = new ArrayList[N+1];
 		isVisited = new boolean[N+1];
 		parent = new int[N+1];
+		cnt = new int[N+1];
 		
 		for(int i=0; i<N+1; i++) {
 			tree[i] = new ArrayList<>();
@@ -44,10 +46,8 @@ public class B11725_트리의부모찾기_윤상우 {
 		// 탐색
 		isVisited[1] = true;
 		search(1);
-		
-		for(int i=2; i < N+1; i++) {
-			System.out.println(parent[i]);
-		}
+
+
 	}
 
 }
